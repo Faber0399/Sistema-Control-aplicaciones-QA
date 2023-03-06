@@ -10,14 +10,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Editar clientes</title>
+        <title>Revisar Metricas</title>
     </head>
 
 </head>
 <body>
     <%-- Cabeceros de Bootstrap--%>
     <jsp:include page="/WEB-INF/paginas/comunes/cabeceros.jsp"/>
-    <form action="${pageContext.request.contextPath}/ServletControlador?accion=modificar&idCliente=${cliente.idCliente}"
+    <form action="${pageContext.request.contextPath}/ServletControlador_1?accion=modificar&idCliente=${aplicacion.idAplicacion}"
           method="POST" class="was-validated">
 
         <!--Botones de Navegacion -->
@@ -29,34 +29,40 @@
                     <div class="col">
                         <div class="card border-secondary mb-3" style="max-width: 75rem" >
                             <div class="card-header" >
-                                <h4>Editar Cliente</h4>
+                                <h4>Mostrar metricas</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group" >
-                                            <label for="nombre">Nombres</label>
-                                            <input type="text" class="form-control" name="nombre" required value="${cliente.nombre}" >
+                                            <label for="nombre">Vulnerabilidades de seguridad</label>
+                                            <input type="text" class="form-control" name="nombre" required value="${aplicacion.metrica1}" readonly>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="apellido">Apellidos</label>
-                                            <input type="text" class="form-control" name="apellido" required value="${cliente.apellido}" >
+                                            <label for="apellido">Densidad de defectos(0-100)</label>
+                                            <input type="text" class="form-control" name="apellido" required value="${aplicacion.metrica2}" readonly>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="email">Tiempo de respuesta (seg)</label>
+                                            <input type="text" class="form-control" name="email" required value="${aplicacion.metrica3}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="telefono">Tiempo de entrega (semanas)</label>
+                                            <input type="text" class="form-control" name="telefono" required value="${aplicacion.metrica4}" readonly>
+                                        </div>
+                                    </div>
+                                
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" required value="${cliente.email}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="telefono">Teléfono</label>
-                                    <input type="tel" class="form-control" name="telefono" required value="${cliente.telefono}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="saldo">Saldo</label>
-                                    <input type="number" class="form-control" name="saldo" required value="${cliente.saldo}" step="any">
+                                    <label for="saldo">Tiempo medio de reparacion (seg)</label>
+                                    <input type="text" class="form-control" name="saldo" required value="${aplicacion.metrica5}" readonly>
                                 </div>
                             </div>
                         </div>

@@ -7,49 +7,65 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-info text-white">
-                <h5 class="modal-title">Agregar Cliente</h5> 
+                <h5 class="modal-title">Agregar Pruebas</h5> 
                 <button class="close" data-dismiss="modal">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </button>
             </div>
-            <div>
-                <form action="${pageContext.request.contextPath}/ServletControlador?accion=insertar"
-                       class="was-validated">
-                    <div class="modal-body" >
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group" >
-                                    <label for="nombre">Nombres</label>
-                                    <input type="text"  name="nombre" required placeholder="Ejemplo Pedro">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="apellido">Apellidos</label>
-                                    <input type="text" class="form-control" name="apellido" required placeholder="Ejemplo Perez">
-                                </div>
-                            </div>
+            <form action="${pageContext.request.contextPath}/ServletControlador_1?accion=insertar&hola=1"
+                  class="was-validated" method="POST">
+                <div class="modal-body" >
+                    <div class="form-row align-items-center">
+
+                        <%-- <div class="form-group" >
+                             <label for="Aplicacion">Aplicacion</label>
+                             <input type="text" class="form-control"  name="Aplicacion" required placeholder="Sistema Ventas 3000">
+                         </div> --%>
+                        <label for="Aplicacion" class="form-label">Aplicaciones</label>
+                        <input class="form-control" list="datalistOptions" name="Aplicacion"id="exampleDataList" placeholder="Type to search...">
+                        <datalist id="datalistOptions">
+                            <option value="ABC">
+                            <option value="BEAR 3">
+                            <option value="FACEBOOK">
+                            <option value="INSTAGRAM">
+                        </datalist>
+                        <div class="form-group">
+                            <label for="cicloPruebas">Ciclo Pruebas</label>
+                            <input type="text" class="form-control" name="cicloPruebas" required placeholder="Ciclo 3">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="version">Version</label>
+                            <input type="text" class="form-control" name="version" required placeholder="1.0">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" required placeholder="pedroperez@ejemplo.com">
+                            <label for="metrica1">Vulnerabilidades de seguridad</label>
+                            <input type="number" class="form-control" name="metrica1" required placeholder="Ejemplo 6">
                         </div>
                         <div class="form-group">
-                            <label for="telefono">Telefono</label>
-                            <input type="tel" class="form-control" name="telefono" required placeholder="Ejemplo 3132564">
+                            <label for="metrica2">Densidad de defectos(0-100)</label>
+                            <input type="number" class="form-control" name="metrica2" required placeholder="Ejemplo 0.2">
                         </div>
                         <div class="form-group">
-                            <label for="saldo">Saldo</label>
-                            <input type="number" class="form-control" name="saldo" required placeholder="Ejemplo 45000">
+                            <label for="metrica3">Tiempo de respuesta (seg)</label>
+                            <input type="number" class="form-control" name="metrica3" required placeholder="Ejemplo 2">
+                        </div>
+                        <div class="form-group">
+                            <label for="metrica4">Tiempo de entrega (semanas)</label>
+                            <input type="number" class="form-control" name="metrica4" required placeholder="Ejemplo 9">
+                        </div>
+                        <div class="form-group">
+                            <label for="metrica5">Tiempo medio de reparacion (seg)</label>
+                            <input type="number" class="form-control" name="metrica5" required placeholder="Ejemplo 5">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" type="submit">Guardar</button>
                     </div>
+                </div>
+            </form>
 
-                </form>
-
-            </div>
-        </div>        
-    </div>
+        </div>
+    </div>        
+</div>
 </div>

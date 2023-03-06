@@ -10,7 +10,7 @@
             <div class="col-md-3">
                 <a href="#" class="btn btn-outline-primary btn-sm"
                    data-toggle="modal" data-target="#agregarClienteModal">
-                    <i class="fas fa-circle-plus fa-beat"></i> Agregar Cliente
+                    <i class="fas fa-circle-plus fa-beat"></i> Registrar Resultados de Pruebas de Calidad
                 </a>
             </div>
         </div>

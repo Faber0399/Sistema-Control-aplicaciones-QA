@@ -5,11 +5,11 @@
 --%>
 
 <!DOCTYPE html>
-<html>
+<html xmlns:p="http://primefaces.org/ui">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Control de Clientes</title>
+        <title>Sistema Control de Aplicaciones</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/estilos/estilos.css" type="text/css"/>
         <script src="https://kit.fontawesome.com/065e11ef9c.js" crossorigin="anonymous"></script>
     </head>
@@ -21,7 +21,7 @@
     <%-- Botones de navegacion--%>
     <jsp:include page="/WEB-INF/paginas/comunes/botonesNavegacion.jsp"/>
     <%-- Listado de clientes--%>
-    <jsp:include page="/WEB-INF/paginas/clientes/listadoClientes.jsp"/>
+    <jsp:include page="/WEB-INF/paginas/clientes/listadoAplicaciones_1.jsp"/>
     <%-- Pie de pagina--%>
     <jsp:include page="/WEB-INF/paginas/comunes/footer.jsp"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">

@@ -11,17 +11,6 @@
                     <i class="fas fa-arrow-left"></i> Regresar al inicio
                 </a>
             </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-outline-success btn-sm">
-                    <i class="fas fa-check"></i> Guardar Cliente
-                </button>
-            </div>
-            <div class="col-md-2">
-                <a href="${pageContext.request.contextPath}/ServletControlador?accion=eliminar&idCliente=${cliente.idCliente}"
-                   class="btn btn-outline-danger btn-sm">
-                    <i class="fas fa-trash"></i> Eliminar Cliente
-                </a>
-            </div>
         </div>
     </div>
 </section>

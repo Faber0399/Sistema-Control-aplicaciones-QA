@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-8">
                 <h1>
-                    <i class="fas fa-cog fa-spin" style="--fa-animation-duration: 10s;"></i>Control de clientes</h1>
+                    <i class="fas fa-cog fa-spin" style="--fa-animation-duration: 10s;"></i>Sistema de Control de Aplicaciones</h1>
             </div>
         </div>
     </div>
