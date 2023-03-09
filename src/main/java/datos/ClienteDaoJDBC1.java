@@ -7,7 +7,9 @@ package datos;
 import dominio.Aplicacion;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -16,10 +18,9 @@ import java.util.List;
 public class ClienteDaoJDBC1 {
 
     private static final String SQL_SELECT = "SELECT idaplicaciones, nombre, version, cicloPruebas, metrica1, metrica2, metrica3, metrica4, metrica5 FROM aplicaciones ORDER BY nombre, version, cicloPruebas";
+    private static final String SQL_SELECT_MAP = "SELECT nombre, version FROM aplicaciones";
     private static final String SQL_SELECT_BY_ID = "SELECT cicloPruebas, metrica1, metrica2, metrica3, metrica4, metrica5 FROM aplicaciones WHERE idaplicaciones=?";
     private static final String SQL_INSERT = "INSERT INTO aplicaciones(nombre, version, cicloPruebas, metrica1, metrica2, metrica3, metrica4, metrica5 ) VALUES (?,?,?,?,?,?,?,?)";
-    
-    
 
     public List<Aplicacion> listar2() {
         Connection conn = null;
@@ -41,7 +42,7 @@ public class ClienteDaoJDBC1 {
                 int metrica3 = rs.getInt("metrica3");
                 int metrica4 = rs.getInt("metrica4");
                 int metrica5 = rs.getInt("metrica5");
-                aplicacion = new Aplicacion(idAplicaciones,nombre,version, cicloPruebas,metrica1,metrica2,metrica3,metrica4,metrica5);
+                aplicacion = new Aplicacion(idAplicaciones, nombre, version, cicloPruebas, metrica1, metrica2, metrica3, metrica4, metrica5);
                 aplicaciones.add(aplicacion);
             }
         } catch (SQLException ex) {
@@ -114,6 +115,28 @@ public class ClienteDaoJDBC1 {
         return registro;
     }
 
-   
-    
+    public Map<String, String> diccionarioaplicaciones() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Map<String, String> aplicaciones = new HashMap<>();
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_MAP);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String version = rs.getString("version");
+                aplicaciones.put(nombre, version);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return aplicaciones;
+    }
+
 }

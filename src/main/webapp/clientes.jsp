@@ -10,7 +10,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sistema Control de Aplicaciones</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/estilos/estilos.css" type="text/css"/>
         <script src="https://kit.fontawesome.com/065e11ef9c.js" crossorigin="anonymous"></script>
     </head>
 

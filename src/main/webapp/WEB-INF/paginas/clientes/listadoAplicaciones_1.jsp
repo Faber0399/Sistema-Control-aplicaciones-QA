@@ -9,9 +9,11 @@
 <fmt:setLocale value="es_MX"/>
 
 <section id="clientes">
+
     <div class="container">
+
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-header">
                         <h4>Listado detallado de aplicaciones</h4>
@@ -29,7 +31,7 @@
                         <tbody>
                             <!-- Iteramos cada elemento de la lista de clientes -->
                             <c:forEach var="aplicacion" items="${aplicaciones}" varStatus="status">
-                                
+
                                 <tr><th scope="row">${status.count}</th>
                                     <td>${aplicacion.nombreAplicacion}</td>
                                     <td>${aplicacion.cicloPruebas}</td>
@@ -46,8 +48,9 @@
                     </table>
                 </div>
             </div>
+
             <%--Inicio de las tarjetas --%>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div>
                     <div class="card text-center bg-success text-white mb-3">
                         <div class="card-body">
@@ -65,6 +68,7 @@
             <%--Fin de las tarjetas --%>
         </div>
     </div>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-md-10">
@@ -75,7 +79,7 @@
                     <table class="table table-hover" >
                         <thead >
                             <tr>
-                                
+
                                 <th>Aplicacion</th>
                                 <th>Version</th>
                                 <th>Vulnerabilidades de seguridad</th>
@@ -106,3 +110,4 @@
         </div>
 </section>
 <jsp:include page="/WEB-INF/paginas/clientes/agregarCliente.jsp"/>
+<jsp:include page="/WEB-INF/paginas/clientes/AgregarNuevaApp.jsp"/>

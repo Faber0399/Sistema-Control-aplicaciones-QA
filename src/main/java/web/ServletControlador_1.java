@@ -3,7 +3,6 @@ package web;
 import datos.ClienteDaoJDBC1;
 import dominio.Aplicacion;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,13 +35,14 @@ public class ServletControlador_1 extends HttpServlet {
 
     private void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Map<String, String> diccionarioaplicaciones = new ClienteDaoJDBC1().diccionarioaplicaciones();
+        //System.out.println("diccionarioaplicaciones = " + diccionarioaplicaciones.values());
         List<Aplicacion> aplicaciones = new ClienteDaoJDBC1().listar2();
-        System.out.println("aplicaciones = " + aplicaciones);
         HttpSession sesion = request.getSession();
         sesion.setAttribute("aplicaciones", aplicaciones);
-        Aplicacion[] aplicaciones2=this.resumenMetricas(aplicaciones);
+        Aplicacion[] aplicaciones2 = this.resumenMetricas(aplicaciones);
         sesion.setAttribute("aplicaciones2", aplicaciones2);
-       
+
         //request.getRequestDispatcher("clientes.jsp").forward(request, response);
         response.sendRedirect("clientes.jsp");
 
@@ -71,6 +71,9 @@ public class ServletControlador_1 extends HttpServlet {
                 case "modificar":
                     this.modificarCliente(request, response);
                     break;
+                case "insertarApp":
+                    this.insertarClienteNuevo(request, response);
+                    break;
                 default:
                     this.accionDefault(request, response);
             }
@@ -91,15 +94,33 @@ public class ServletControlador_1 extends HttpServlet {
         int metrica3 = Integer.parseInt(request.getParameter("metrica3"));
         int metrica4 = Integer.parseInt(request.getParameter("metrica4"));
         int metrica5 = Integer.parseInt(request.getParameter("metrica5"));
+        List<Aplicacion> aplicaciones = new ClienteDaoJDBC1().listar2();
 
-        //Creamos el objeto de cliente (modelo)
-        Aplicacion aplicacion = new Aplicacion(nombre, version,
-                cicloPruebas, metrica1, metrica2, metrica3, metrica4, metrica5);
+        for (int i = 0; i < aplicaciones.size(); i++) {
+            if (nombre.toLowerCase().equals(aplicaciones.get(i).getNombreAplicacion().toLowerCase()) && version.equals(aplicaciones.get(i).getVersion())) {
+                //Creamos el objeto de cliente (modelo)
+                Aplicacion aplicacion = new Aplicacion(nombre, version,
+                        cicloPruebas, metrica1, metrica2, metrica3, metrica4, metrica5);
 
-        //Insertamos el nuevo objeto en la base de datos
-        int registrosModificados = new ClienteDaoJDBC1().insertar(aplicacion);
-        //Redirigimos hacia accion por default
-        this.accionDefault(request, response);
+                //Insertamos el nuevo objeto en la base de datos
+                int registrosModificados = new ClienteDaoJDBC1().insertar(aplicacion);
+                //Redirigimos hacia accion por default
+                this.accionDefault(request, response);
+                break;
+            }
+        }
+
+        if (!response.isCommitted()) {
+
+            request.setAttribute("Aplicacion", nombre);
+            request.setAttribute("version", version);
+            request.setAttribute("aplicaciones", aplicaciones);
+            request.setAttribute("error", "error");
+
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+
+        }
+
     }
 
     private void modificarCliente(HttpServletRequest request, HttpServletResponse response)
@@ -117,7 +138,7 @@ public class ServletControlador_1 extends HttpServlet {
     }
 
     public Aplicacion[] resumenMetricas(List<Aplicacion> aplicaciones) {
-        int aux2 = 0,aux3 = 0, aux4 = 0,aux5 = 0,aux6 = 0,metrica1 = 0, metrica2 = 0, metrica3 = 0, metrica4 = 0, metrica5 = 0;
+        int aux2 = 0, aux3 = 0, aux4 = 0, aux5 = 0, aux6 = 0, metrica1 = 0, metrica2 = 0, metrica3 = 0, metrica4 = 0, metrica5 = 0;
         Aplicacion[] appresumen = new Aplicacion[aplicaciones.size()];
         existe:
         for (int i = 0; i < aplicaciones.size(); i++) {
@@ -165,12 +186,34 @@ public class ServletControlador_1 extends HttpServlet {
                     .getNombreAplicacion(),
                     aplicaciones.get(i).getVersion(), "Resumen",
                     metrica1, metrica2, metrica3, metrica4, metrica5);
-            
-            
+
             appresumen[i] = app1;
         }
-        System.out.println(Arrays.toString(appresumen));
         return appresumen;
+
+    }
+
+    private void insertarClienteNuevo(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //recuperamos los valores del formulario agregarCliente
+
+        String nombre = request.getParameter("Aplicacion");
+        String cicloPruebas = request.getParameter("cicloPruebas");
+        String version = request.getParameter("version");
+        int metrica1 = Integer.parseInt(request.getParameter("metrica1"));
+        int metrica2 = Integer.parseInt(request.getParameter("metrica2"));
+        int metrica3 = Integer.parseInt(request.getParameter("metrica3"));
+        int metrica4 = Integer.parseInt(request.getParameter("metrica4"));
+        int metrica5 = Integer.parseInt(request.getParameter("metrica5"));
+
+        //Creamos el objeto de cliente (modelo)
+        Aplicacion aplicacion = new Aplicacion(nombre, version,
+                cicloPruebas, metrica1, metrica2, metrica3, metrica4, metrica5);
+
+        //Insertamos el nuevo objeto en la base de datos
+        int registrosModificados = new ClienteDaoJDBC1().insertar(aplicacion);
+        //Redirigimos hacia accion por default
+        this.accionDefault(request, response);
 
     }
 

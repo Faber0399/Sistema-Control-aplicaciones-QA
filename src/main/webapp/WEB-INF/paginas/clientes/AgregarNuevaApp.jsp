@@ -3,27 +3,24 @@
     Created on : Nov 14, 2022, 2:34:51 PM
     Author     : faber
 --%>
-<div class="modal" id="agregarClienteModal">
+<div class="modal" id="agregarNuevaApp">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-info text-white">
-                <h5 class="modal-title">Agregar Pruebas</h5> 
+                <h5 class="modal-title">Agregar Aplicacion</h5> 
                 <button class="close" data-dismiss="modal">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </button>
             </div>
-            <form action="${pageContext.request.contextPath}/ServletControlador_1?accion=insertar"
+            <form action="${pageContext.request.contextPath}/ServletControlador_1?accion=insertarApp"
                   class="was-validated" method="POST">
                 <div class="modal-body" >
                     <div class="form-row align-items-center">
-                        <label for="Aplicacion" class="form-label">Aplicaciones</label>
-                        <input class="form-control" list="datalistOptions" name="Aplicacion"id="exampleDataList" placeholder="Type to search...">
-                        <datalist id="datalistOptions">
-                            <option value="ABC">
-                            <option value="Bear3">   
-                            <option value="Facebook">
-                            <option value="Instagram">
-                        </datalist>
+
+                        <div class="form-group" >
+                            <label for="Aplicacion">Aplicacion</label>
+                            <input type="text" class="form-control" name="Aplicacion" required placeholder="Trivago">
+                        </div>
                         <div class="form-group">
                             <label for="cicloPruebas">Ciclo Pruebas</label>
                             <input type="text" class="form-control" name="cicloPruebas" required placeholder="Ciclo 3">
